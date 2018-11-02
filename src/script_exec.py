@@ -11,7 +11,6 @@ from const import web_shell
 
 def exec_script():
     proc = Popen(args=[web_shell], shell=True, stdout=subprocess.PIPE)
-    return proc.stdout.read().decode('utf-8')
+    return proc.stdout.read().decode('utf-8').split('\n')
 
-
-exec_script()
+# exec_script()
