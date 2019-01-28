@@ -6,6 +6,7 @@
 from flask import Flask
 from flask import jsonify
 
+from const import port
 from src.script_exec import exec_script
 
 app = Flask(__name__)
@@ -16,10 +17,10 @@ def health():
     return jsonify({'STATUS': "UP"}), 200
 
 
-@app.route('/reload/web')
-def health():
-    return jsonify({'Info': exec_script()}), 200
+@app.route('/restart/<name>')
+def reload_name(name):
+    return jsonify({'Info': exec_script(name)}), 200
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8181)
+    app.run(host='0.0.0.0', port=port)
